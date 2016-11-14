@@ -16,9 +16,11 @@ public class UserController {
     @Autowired
     private IUserService iUserService;
 
-    @RequestMapping("/getUser")
+    @RequestMapping(value = "/getUser")
     @ResponseBody
     public String getUser() {
-        return iUserService.getUser(1L).getUserName();
+        String userName = iUserService.getUser(1L).getUserName();
+        System.out.println(userName);
+        return userName;
     }
 }

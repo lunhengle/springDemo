@@ -18,7 +18,7 @@ public class IUserDaoImpl implements IUserDao {
      */
     public final User getUser(final long id) {
         User user = new User();
-        user.setUserName("lunhengle");
+        user.setUserName("张三");
         user.setPassword("123456");
         return user;
     }
