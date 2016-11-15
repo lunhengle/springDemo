@@ -12,6 +12,7 @@
         <junit-version>4.11</junit-version>
         <servlet-version>3.1.0</servlet-version>
         <h2-version>1.4.180</h2-version>
+        <jstl-version>1.2</jstl-version>
     </properties>
     <dependencies>
         <!--spring 基础包 start-->
@@ -48,6 +49,18 @@
             <version>${spring-version}</version>
         </dependency>
         <!--spring mvc end-->
+        <!--spring jdbc start-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>${spring-version}</version>
+        </dependency>
+        <!--spring jdbc end-->
         <!--spring test start-->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -68,12 +81,17 @@
             <version>${servlet-version}</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>${jstl-version}</version>
+        </dependency>
         <!--java 测试 嵌入式数据库h2 start-->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>${h2-version}</version>
-            <scope>runtime</scope>
+            <scope>test</scope>
         </dependency>
         <!--java 测试 嵌入式数据库h2 end-->
     </dependencies>
