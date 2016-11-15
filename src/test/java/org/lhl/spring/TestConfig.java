@@ -3,7 +3,7 @@ package org.lhl.spring;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.lhl.spring.bean.User;
-import org.lhl.spring.config.AppConfig;
+import org.lhl.spring.config.javaConfig.AppConfig;
 import org.lhl.spring.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;

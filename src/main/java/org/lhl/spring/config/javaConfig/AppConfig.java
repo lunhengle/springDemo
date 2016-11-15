@@ -1,4 +1,4 @@
-package org.lhl.spring.config;
+package org.lhl.spring.config.javaConfig;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
