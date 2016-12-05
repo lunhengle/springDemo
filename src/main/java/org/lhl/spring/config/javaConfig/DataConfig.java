@@ -1,5 +1,7 @@
 package org.lhl.spring.config.javaConfig;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,6 +21,7 @@ import javax.sql.DataSource;
 @Configuration
 @PropertySource({"classpath:/properties/dev.properties", "classpath:/properties/prod.properties"})
 public class DataConfig {
+    private final static Logger logger = LoggerFactory.getLogger(DataConfig.class);
     @Autowired
     private Environment env;
 
@@ -30,6 +33,7 @@ public class DataConfig {
     @Bean
     @Profile("test")
     public DataSource embeddedDataSource() {
+        logger.info("加载test数据源！");
         EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
         return builder.setType(EmbeddedDatabaseType.H2)
                 .setScriptEncoding("UTF-8")
@@ -47,6 +51,7 @@ public class DataConfig {
     @Bean
     @Profile("dev")
     public DataSource devDataSource() {
+        logger.info("加载dev 数据源！");
         System.out.println(env.getProperty("dev.jdbc.driver"));
         System.out.println(env.getProperty("dev.jdbc.url"));
         System.out.println(env.getProperty("dev.jdbc.username"));
@@ -62,6 +67,7 @@ public class DataConfig {
     @Bean
     @Profile("prod")
     public DataSource prodDataSource() {
+        logger.info("加载prod 数据源！");
         System.out.println(env.getProperty("prod.jdbc.driver"));
         System.out.println(env.getProperty("prod.jdbc.url"));
         System.out.println(env.getProperty("prod.jdbc.username"));

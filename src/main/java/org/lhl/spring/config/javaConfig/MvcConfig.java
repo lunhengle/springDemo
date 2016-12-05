@@ -1,5 +1,7 @@
 package org.lhl.spring.config.javaConfig;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -25,6 +27,8 @@ import java.util.List;
 @EnableWebMvc
 @ComponentScan({"org.lhl.spring.controller"})
 public class MvcConfig extends WebMvcConfigurerAdapter {
+    private final static Logger logger = LoggerFactory.getLogger(MvcConfig.class);
+
     /**
      * 重写编码格式.
      *
@@ -33,11 +37,13 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     @Override
     public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
         //重新设置 string 类型编码格式为 utf-8
+        logger.info("设置编码格式为 utf-8");
         converters.add(stringHttpMessageConverter());
     }
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
+        logger.info("设置首页 为index");
         registry.addViewController("/").setViewName("index");
     }
 
@@ -59,8 +65,14 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         return stringHttpMessageConverter;
     }
 
+    /**
+     * 设置mvc 前后缀.
+     *
+     * @return mvc 视图解析器
+     */
     @Bean
     public ViewResolver viewResolver() {
+        logger.info("设置mvc 前缀文件夹 views 后缀 .jsp");
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
         viewResolver.setViewClass(JstlView.class);
         viewResolver.setPrefix("/WEB-INF/views/");

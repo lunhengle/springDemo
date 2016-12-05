@@ -2,6 +2,9 @@ package org.lhl.spring.config;
 
 import org.lhl.spring.config.javaConfig.AppConfig;
 import org.lhl.spring.config.javaConfig.MvcConfig;
+import org.lhl.spring.config.javaConfig.SecurityConfig;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
@@ -15,9 +18,10 @@ import javax.servlet.ServletException;
  */
 @Order(1)
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+    private final static Logger logger= LoggerFactory.getLogger(WebAppInitializer.class);
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
-        System.out.println("初始化!");
+        logger.info("系统初始化加载开始!");
         super.onStartup(servletContext);
         this.initializerContext(servletContext);
     }
@@ -29,8 +33,8 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
      */
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        System.out.println("加载root config");
-        return new Class<?>[]{AppConfig.class};
+        logger.info("加载root config");
+        return new Class<?>[]{AppConfig.class,SecurityConfig.class};
     }
 
     /**
@@ -40,7 +44,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
      */
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        System.out.println("加载servlet Config");
+        logger.info("加载servlet Config");
         return new Class<?>[]{MvcConfig.class};
     }
 
@@ -51,7 +55,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
      */
     @Override
     protected String[] getServletMappings() {
-        System.out.println("加载 servlet mappings");
+        logger.info("加载 servlet mappings");
         return new String[]{"/"};
     }
 
@@ -78,6 +82,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
      * @param servletContext servlet 上下文
      */
     private void initializerContext(ServletContext servletContext) {
+        logger.info("初始化spring profiles");
         servletContext.setInitParameter("spring.profiles.default", "test");
         servletContext.setInitParameter("spring.profiles.active", "test");
     }

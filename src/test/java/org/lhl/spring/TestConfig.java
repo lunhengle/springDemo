@@ -5,6 +5,8 @@ import org.junit.runner.RunWith;
 import org.lhl.spring.bean.User;
 import org.lhl.spring.config.javaConfig.AppConfig;
 import org.lhl.spring.service.IUserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
@@ -16,8 +18,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {AppConfig.class})
-@ActiveProfiles("dev")
+@ActiveProfiles("test")
 public class TestConfig {
+    private static final Logger logger = LoggerFactory.getLogger(TestConfig.class);
 
     @Autowired
     private IUserService iUserService;
@@ -25,11 +28,7 @@ public class TestConfig {
     @Test
     public void testAppConfig() {
         User user = iUserService.getUser(1L);
-        System.out.println(user.getUserName());
+        logger.info(user.getUserName());
     }
 
-    @Test
-    public void testListener() {
-
-    }
 }
