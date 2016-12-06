@@ -34,7 +34,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
     @Override
     protected Class<?>[] getRootConfigClasses() {
         logger.info("加载root config");
-        return new Class<?>[]{AppConfig.class,SecurityConfig.class};
+        return new Class<?>[]{AppConfig.class};
     }
 
     /**
