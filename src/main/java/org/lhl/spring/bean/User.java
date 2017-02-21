@@ -5,8 +5,17 @@ package org.lhl.spring.bean;
  * 用户实体类
  */
 public class User {
+    /**
+     * ID
+     */
     private long id;
+    /**
+     * 用户名.
+     */
     private String userName;
+    /**
+     * 密码.
+     */
     private String password;
 
     public long getId() {
